@@ -1,0 +1,40 @@
+﻿@model IEnumerable<bestbrigh.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container mt-5">
+    <h2>Users</h2>
+
+    <p>
+        <a asp-action="CreateUser" class="btn btn-primary">Create New User</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserId</td>
+                        <td>@user.Username</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <a asp-action="EditUser" asp-route-id="@user.UserId" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-action="DeleteUser" asp-route-id="@user.UserId" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<bestbrigh.Models.User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Users</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Users</h2>
+        <p>
+            <a asp-action="CreateUser" class="btn btn-primary">Create New</a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Username</td>
+                        <td>@item.FullName</td>
+                        <td>@item.Role</td>
+                        <td>
+                            <a asp-action="EditUser" asp-route-id="@item.UserId" class="btn btn-warning">Edit</a>
+                            <a asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+</body>
+</html>

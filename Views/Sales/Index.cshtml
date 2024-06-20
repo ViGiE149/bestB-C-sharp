@@ -1,0 +1,114 @@
+﻿@model IEnumerable<bestbrigh.Models.Sale>
+
+@{
+    ViewData["Title"] = "Sales";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Best Brightness Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bestbrigh.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #007bff; /* Blue header color */
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue button background */
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px); /* Lift button on hover */
+                box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            }
+
+        .table {
+            background-color: #fff; /* White background for table */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .table th,
+            .table td {
+                vertical-align: middle;
+            }
+
+            .table thead {
+                background-color: #007bff; /* Blue header background */
+                color: #fff; /* White text color */
+            }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 123, 255, 0.05); /* Light blue striped rows */
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.1); /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Sales</h1>
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New Sale</a>
+        </p>
+
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Date Of Sale</th>
+                    <th>Salesperson</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.SalePrice</td>
+                        <td>@item.SaleDate.ToShortDateString()</td>
+                        <td>@item.User.Username</td>
+                        <td>
+                            <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.SaleId">Edit</a>
+                            <button class="btn btn-danger ms-1" onclick="confirmDelete('@item.SaleId')">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function confirmDelete(saleId) {
+            if (confirm('Are you sure you want to delete this sale?')) {
+                // Redirect to delete action or perform AJAX delete
+                window.location.href = '@Url.Action("Delete", "Sales")/' + saleId;
+            }
+        }
+    </script>
+</body>
+</html>

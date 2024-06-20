@@ -1,0 +1,121 @@
+﻿@model bestbrigh.Models.Sale
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Edit Sale</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bestbrigh.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+            font-family: 'Arial', sans-serif;
+            color: #495057; /* Dark grey text */
+        }
+
+        .container {
+            max-width: 600px; /* Limit form width */
+            margin-top: 50px; /* Top margin for spacing */
+            background-color: #ffffff; /* White background for form */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+
+        h2 {
+            color: #007bff; /* Blue header color */
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #343a40; /* Dark grey label color */
+        }
+
+        .form-control {
+            border: 1px solid #ced4da; /* Light grey border */
+            border-radius: 4px;
+            background-color: #f1f3f5; /* Light grey background */
+            color: #495057; /* Dark grey text */
+        }
+
+            .form-control:focus {
+                border-color: #007bff; /* Focus state border color */
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus state shadow */
+            }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue button background */
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+            }
+
+        .text-danger {
+            font-size: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Sale</h2>
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="SaleId" />
+            <div class="mb-3">
+                <label asp-for="ProductId" class="form-label">Product</label>
+                <select asp-for="ProductId" class="form-select">
+                    <option value="">Please select</option>
+                    @foreach (var product in ViewBag.Products)
+                    {
+                        <option value="@product.ProductId">@product.ProductName</option>
+                    }
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="UserId" class="form-label">Salesperson</label>
+                <select asp-for="UserId" class="form-select">
+                    <option value="">Please select</option>
+                    @foreach (var user in ViewBag.Users)
+                    {
+                        <option value="@user.UserId">@user.Username</option>
+                    }
+                </select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Quantity" class="form-label">Quantity</label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SalePrice" class="form-label">Sale Price</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input asp-for="SalePrice" class="form-control" />
+                </div>
+                <span asp-validation-for="SalePrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SaleDate" class="form-label">Sale Date</label>
+                <input asp-for="SaleDate" type="date" class="form-control" />
+                <span asp-validation-for="SaleDate" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

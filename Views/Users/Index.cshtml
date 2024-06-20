@@ -1,0 +1,108 @@
+﻿@model IEnumerable<bestbrigh.Models.User>
+@{
+    ViewData["Title"] = "Daily Sales Report";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Best Brightness Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bestbrigh.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: yellow; /* Blue header color */
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: yellow; /* Blue button background */
+            border-color: yellow;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px); /* Lift button on hover */
+                box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            }
+
+        .table {
+            background-color: #fff; /* White background for table */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th{
+            color:black
+        }
+            .table th,
+            .table td {
+                vertical-align: middle;
+            }
+
+            .table thead {
+                background-color: yellow; /* Blue header background */
+                color: #fff; /* White text color */
+            }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 123, 255, 0.05); /* Light blue striped rows */
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.1); /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Users</h1>
+
+<p>
+    <a href="@Url.Action("CreateUser", "Users")" class="btn btn-primary">Add New User</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Role</th>
+            <th>Created At</th>
+            <th>Acction</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Username</td>
+                <td>@item.FullName</td>
+                <td>@item.Role</td>
+                <td>@item.CreatedAt</td>
+                <td>
+                    <a href="@Url.Action("EditUser", new { id = item.UserId })" class="btn btn-secondary">Edit</a>
+                    <a href="@Url.Action("DeleteUser", new { id = item.UserId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

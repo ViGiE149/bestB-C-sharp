@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bestbrigh.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Serif font for classic feel */
+            background-color: #f3f3f3; /* Light grey background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff; /* White background */
+            padding: 30px;
+            border: 1px solid #ddd; /* Light grey border */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+
+        h1 {
+            color: #333; /* Dark grey header color */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px; /* Larger font size for title */
+        }
+
+        .list-group {
+            margin-top: 20px;
+        }
+
+        .list-group-item {
+            background-color: #f9f9f9; /* Light grey background */
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; /* Light grey border */
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            color: #333; /* Dark grey text color */
+            text-decoration: none;
+            display: block;
+        }
+
+            .list-group-item:hover {
+                background-color: #e9ecef; /* Slightly darker grey on hover */
+            }
+
+            .list-group-item:active,
+            .list-group-item:focus {
+                background-color: #ddd; /* Even darker grey on active/focus */
+            }
+
+            .list-group-item:hover,
+            .list-group-item:active,
+            .list-group-item:focus {
+                color: #333; /* Dark grey text color on active/hover/focus */
+            }
+
+            .list-group-item:focus {
+                outline: none; /* Remove outline on focus */
+            }
+    </style>
+</head>
+<body>
+
+        <h1>@ViewData["Title"]</h1>
+        <div class="list-group">
+            <a href="@Url.Action("DailySales", "Reports")" class="list-group-item">Daily Sales Report</a>
+            <a href="@Url.Action("Inventory", "Reports")" class="list-group-item">Inventory Report</a>
+            <a href="@Url.Action("LowStock", "Reports")" class="list-group-item">Low Stock Report</a>
+        </div>
+  
+</body>
+</html>

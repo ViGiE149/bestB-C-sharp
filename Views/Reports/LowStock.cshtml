@@ -1,0 +1,40 @@
+﻿@model IEnumerable<bestbrigh.Models.Product>
+
+@{
+    ViewData["Title"] = "Low Stock Report";
+}
+
+<h1>Low Stock Report</h1>
+
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>SKU</th>
+                <th>Stock Level</th>
+                <th>Threshold</th>
+                <th>Price</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.SKU</td>
+                    <td>@product.StockLevel</td>
+
+                    <td>@product.Price</td>
+                    <td>@product.CreatedAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>All products are above the threshold.</p>
+}
